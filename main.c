@@ -2,17 +2,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int main()
+#include "qual.h"
+
+int 
+main()
 {
-    char *string,*found;
+    char *field, *input, *tofree;
 
-    string = strdup("First,Middle,Last,Phone");
-    printf("Original string: '%s'\n",string);
+    tofree = input = strdup("Don|K|\"Moby, M.D.\"|don.moby@nothing.com");
 
-    while((found = strsep(&string,",")) != NULL) {
-        printf("%s\n",found);
+    while ((field = strqsep(&input, "|", "\"")) != NULL) {
+        printf("%s\n", field);
     }
-    free(string);
-
-    return(0);
+    free(tofree);
+    return 0;
 }

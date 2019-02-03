@@ -7,7 +7,7 @@ BINARY := qual
 
 $(BINDIR)/$(BINARY):
 	if [ ! -d $(BINDIR) ]; then mkdir bin; fi
-	$(CC) $(CFLAGS) -o $(BINDIR)/$(BINARY) main.c
+	$(CC) $(CFLAGS) -o $(BINDIR)/$(BINARY) main.c qual.c
 
 .PHONY: clean
 clean:
