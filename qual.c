@@ -22,12 +22,12 @@ length(char *strp, const char *sep, const char *qual)
             return strlen(strp);
         }
         i = result - strp;
-        
-		// return len(s[:i+len(qual)])
+
+        return strlen(qual) + i;
     }
 
     if (i == -1) {
         return strlen(strp);
     }
-    // return strlen(strp[:i]);
+    return i;
 }

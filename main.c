@@ -6,21 +6,25 @@
 
 int main()
 {
-    char *string,*found;
-    const char *st2 = strdup("wowzers");
-    printf("%s\n", st2);
+    // char *string, *found;
+    // const char *st2 = strdup("wowzers");
+    // printf("%s\n", st2);
 
-    string = strdup("First,\"Middle, name\",Last,Phone");
-    printf("Original string: '%s'\n",string);
+    // string = strdup("First,Middle,Last,Phone");
+    // printf("Original string: '%s'\n",string);
 
-    while((found = strsep(&string, ",")) != NULL) {
-
+    // while((found = strsep(&string, ",")) != NULL) {
         
-        printf("%s\n", found);
-        printf("wow%c\n", *(found-2));
+    //     printf("%s\n", found);
+    // }
+    // free(string);
+
+    char *input = "First,Middle,Last";
+
+    for (int i = 0; i < strlen(input); i++) {
+        printf("%c\n", input[i]);
     }
-    printf("%d\n", length(NULL, NULL, NULL));
-    free(string);
+
 
     return 0;
 }
