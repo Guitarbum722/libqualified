@@ -1,33 +1,34 @@
 #include <string.h>
+#include <stdio.h>
 
-int
-length(char *strp, const char *sep, const char *qual)
+#define TRUE 1;
+#define FALSE 0;
+
+char *
+strqsep(const char *strp, int sep, int qual)
 {
-    int i = 0;
+    int in_quotes = FALSE;
+    char p[strlen(strp)];
+    strcpy(p, strp);
+    
+    for (int i = 0; i < strlen(p); i++) {
 
-    // qual is empty or strp does not start with qual
-    if (qual[0] == '\0' || !(strncmp(strp, qual, strlen(qual)) == 0)) {
-        char *result = strstr(strp, sep);
-        if (result == NULL) {
-            return strlen(strp);
+        if (p[i] == qual) {
+            in_quotes ^= 1;
+            printf("in quotes: %c\n", *strp);
+            continue;
         }
-        i = result - strp;
-    } else {
-        char qualAndSep[strlen(qual) + strlen(sep)];
-        strcpy(qualAndSep, qual);
-        strcat(qualAndSep, sep);
+        printf("%c", p[i]);
         
-        char *result = strstr(strp, qualAndSep);
-        if (result == NULL) {
-            return strlen(strp);
-        }
-        i = result - strp;
-
-        return strlen(qual) + i;
+        // if (strp[i] == sep && (strp[i] -1) == qual) {
+        //     break;
+        // }
+        // if (strp[i] == qual) {
+        //     in_quotes = TRUE;
+        //     field_count++;
+        //     continue;
+        // }
+        // printf("%c", strp[i]);
     }
-
-    if (i == -1) {
-        return strlen(strp);
-    }
-    return i;
+    return NULL;
 }

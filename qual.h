@@ -1,2 +1,2 @@
 
-int length(char *strp, const char *sep, const char *qual);
+char *strqsep(const char *strp, const char sep, const char qual);

@@ -4,6 +4,8 @@
 
 #include "qual.h"
 
+
+
 int main()
 {
     // char *string, *found;
@@ -19,11 +21,11 @@ int main()
     // }
     // free(string);
 
-    char *input = "First,Middle,Last";
+    char *input = "\"First,Middle,Last\"";
+    char sep = ',';
+    char qual = '"';
 
-    for (int i = 0; i < strlen(input); i++) {
-        printf("%c\n", input[i]);
-    }
+    strqsep(input, sep, qual);
 
 
     return 0;
