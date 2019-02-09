@@ -1,34 +1,43 @@
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define TRUE 1;
 #define FALSE 0;
 
 char *
-strqsep(const char *strp, int sep, int qual)
+strqsep(char *strp, int sep, int qual)
 {
+    char *field, *start;
     int in_quotes = FALSE;
-    char p[strlen(strp)];
-    strcpy(p, strp);
-    
-    for (int i = 0; i < strlen(p); i++) {
+    size_t count = 0;
 
-        if (p[i] == qual) {
+    if (strp == NULL) {
+        return NULL;
+    }
+    start = strp;
+
+    do {
+        count++;
+        // printf("%c", *strp);
+        if (*strp == qual) {
             in_quotes ^= 1;
-            printf("in quotes: %c\n", *strp);
             continue;
         }
-        printf("%c", p[i]);
+        if (*strp == sep) {
+            if (in_quotes) {
+                continue;
+            }
+            break;
+        }
         
-        // if (strp[i] == sep && (strp[i] -1) == qual) {
-        //     break;
-        // }
-        // if (strp[i] == qual) {
-        //     in_quotes = TRUE;
-        //     field_count++;
-        //     continue;
-        // }
-        // printf("%c", strp[i]);
-    }
-    return NULL;
+
+    } while (*++strp != '\0');
+
+    field = (char*) malloc(count + 1);
+    field[count] = '\0';
+    strncpy(field, start, count);
+    printf("strp:: %s\n", strp);
+    printf("field:: %s\n", field);
+    return field;
 }

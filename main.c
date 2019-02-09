@@ -4,9 +4,8 @@
 
 #include "qual.h"
 
-
-
-int main()
+int 
+main()
 {
     // char *string, *found;
     // const char *st2 = strdup("wowzers");
@@ -21,13 +20,15 @@ int main()
     // }
     // free(string);
 
-    char *input = "\"First,Middle,Last\"";
+    char *input = "\"First\",Middle,Last";
     char sep = ',';
     char qual = '"';
+    char *field;
 
-    strqsep(input, sep, qual);
-
-
+    field = strqsep(input, sep, qual);
+    // printf("%s\n", field);
+    // while ((field = strqsep(input, sep, qual) != NULL)) {
+    //     printf("%s\n", field);
+    // }
     return 0;
 }
-
