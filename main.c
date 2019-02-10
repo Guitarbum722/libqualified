@@ -7,16 +7,16 @@
 int 
 main()
 {
-    // char *input = "\"Fir, ()st\",Middle,\"Phone , (home)\",Last";
-    char *input = "First|Middle|\"Phone | (home)\"|Last";
+    char *field, *input, *tofree;
+
+    tofree = input = strdup("First|Middle|\"Phone | (home)\"|Last");
 
     char sep = '|';
     char qual = '"';
-    char *field;
 
     while ((field = strqsep(&input, sep, qual)) != NULL) {
         printf("field:    |%s\n", field);
     }
-    free(field);
+    free(tofree);
     return 0;
 }
