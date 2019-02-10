@@ -1,2 +1,2 @@
 
-char *strqsep(const char *strp, const char sep, const char qual);
+char *strqsep(char **strp, const char sep, const char qual);

@@ -7,28 +7,16 @@
 int 
 main()
 {
-    // char *string, *found;
-    // const char *st2 = strdup("wowzers");
-    // printf("%s\n", st2);
+    // char *input = "First,\"Middle, Name\",Last";
+    char *input = "\"Fir,st\",Middle,\"Phone,(home)\",Last";
 
-    // string = strdup("First,Middle,Last,Phone");
-    // printf("Original string: '%s'\n",string);
-
-    // while((found = strsep(&string, ",")) != NULL) {
-        
-    //     printf("%s\n", found);
-    // }
-    // free(string);
-
-    char *input = "\"First\",Middle,Last";
     char sep = ',';
     char qual = '"';
     char *field;
 
-    field = strqsep(input, sep, qual);
-    // printf("%s\n", field);
-    // while ((field = strqsep(input, sep, qual) != NULL)) {
-    //     printf("%s\n", field);
-    // }
+    while ((field = strqsep(&input, sep, qual)) != NULL) {
+        printf("field: %s\n", field);
+    }
+    free(field);
     return 0;
 }
