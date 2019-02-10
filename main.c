@@ -7,15 +7,15 @@
 int 
 main()
 {
-    // char *input = "First,\"Middle, Name\",Last";
-    char *input = "\"Fir,st\",Middle,\"Phone,(home)\",Last";
+    // char *input = "\"Fir, ()st\",Middle,\"Phone , (home)\",Last";
+    char *input = "First|Middle|\"Phone | (home)\"|Last";
 
-    char sep = ',';
+    char sep = '|';
     char qual = '"';
     char *field;
 
     while ((field = strqsep(&input, sep, qual)) != NULL) {
-        printf("field: %s\n", field);
+        printf("field:    |%s\n", field);
     }
     free(field);
     return 0;

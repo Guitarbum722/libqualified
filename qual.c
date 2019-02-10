@@ -6,7 +6,7 @@
 #define FALSE 0;
 
 char *
-strqsep(char **strp, char sep, char qual)
+strqsep(char **strp, const char sep, const char qual)
 {
     char *field, *start;
     int in_quotes = FALSE;
@@ -38,6 +38,7 @@ strqsep(char **strp, char sep, char qual)
 
     field = (char*) malloc(sizeof(char) * (count + 1)); // make room for NUL terminator
     strncpy(field, start, count);
+    field[count] = '\0';
 
     return field;
 }
