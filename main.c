@@ -9,7 +9,7 @@ main()
 {
     char *field, *input, *tofree;
 
-    tofree = input = strdup("First|Middle|\"Phone | (home)\"|Last");
+    tofree = input = strdup("\"asd,|,|f\"|First|Middle|\"Phone | (home)\"|Last");
 
     char sep = '|';
     char qual = '"';
