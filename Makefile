@@ -15,3 +15,9 @@ clean:
 
 .PHONY: test
 test: clean
+
+.PHONY: test
+test: clean
+	$(CC) -o tests/tests tests/tests.c qual.c tests/unity/unity.c
+	tests/tests
+	rm -f tests/tests
