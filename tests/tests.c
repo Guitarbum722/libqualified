@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <strings.h>
 
-#include "../qual.h"
+#include "../qualified.h"
 #include "unity/unity.h"
 
 struct table_test {
@@ -24,15 +24,15 @@ test_strqsep_comma_no_qual(void)
         { .name = "fourth", .expected = "don.moby@nothing.com" },
 
     };
-    char *got, *input, *tofree;
-    tofree = input = strdup("Don,K,Moby,don.moby@nothing.com");
+    char *got, *input, *original;
+    original = input = strdup("Don,K,Moby,don.moby@nothing.com");
 
     for (int i = 0; i < sizeof(table_tests) / sizeof(struct table_test); i++) {
         got = strqsep(&input, ",", "");
         TEST_ASSERT_EQUAL_STRING(table_tests[i].expected, got);
     }
 
-    free(tofree);
+    free(original);
 }
 
 void
@@ -45,15 +45,15 @@ test_strqsep_comma_with_qual(void)
         { .name = "fourth", .expected = "don.moby@nothing.com" },
 
     };
-    char *got, *input, *tofree;
-    tofree = input = strdup("\"Don,,,\",K,\"Moby, M.D.\",don.moby@nothing.com");
+    char *got, *input, *original;
+    original = input = strdup("\"Don,,,\",K,\"Moby, M.D.\",don.moby@nothing.com");
 
     for (int i = 0; i < sizeof(table_tests) / sizeof(struct table_test); i++) {
         got = strqsep(&input, ",", "\"");
         TEST_ASSERT_EQUAL_STRING(table_tests[i].expected, got);
     }
 
-    free(tofree);
+    free(original);
 }
 
 void
@@ -65,27 +65,27 @@ test_strqsep_pipe_delim_single_quote_qual(void)
         { .name = "third", .expected = "Topics" },
         { .name = "fourth", .expected = "'Look|at|me'" },
     };
-    char *got, *input, *tofree;
-    tofree = input = strdup("Johnny|',|, '|Topics|'Look|at|me'");
+    char *got, *input, *original;
+    original = input = strdup("Johnny|',|, '|Topics|'Look|at|me'");
 
     for (int i = 0; i < sizeof(table_tests) / sizeof(struct table_test); i++) {
         got = strqsep(&input, "|", "'");
         TEST_ASSERT_EQUAL_STRING(table_tests[i].expected, got);
     }
 
-    free(tofree);
+    free(original);
 }
 
 void
 test_strqsep_null_input(void)
 {
-    char *got, *input, *tofree;
-    tofree = input = strdup("");
+    char *got, *input, *original;
+    original = input = strdup("");
 
     got = strqsep(&input, ",", "");
     TEST_ASSERT_EQUAL_STRING(NULL, got);
 
-    free(tofree);
+    free(original);
 }
 
 void
