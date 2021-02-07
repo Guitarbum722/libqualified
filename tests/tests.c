@@ -57,6 +57,27 @@ test_strqsep_comma_with_qual(void)
 }
 
 void
+test_strqsep_comma_at_beginning_with_qual(void)
+{
+    static struct table_test table_tests[] = {
+        { .name = "first", .expected = "\"Don,,,\"" },
+        { .name = "second", .expected = "K" },
+        { .name = "third", .expected = "\", Moby, M.D.\"" },
+        { .name = "fourth", .expected = "don.moby@nothing.com" },
+
+    };
+    char *got, *input, *original;
+    original = input = strdup("\"Don,,,\",K,\", Moby, M.D.\",don.moby@nothing.com");
+
+    for (int i = 0; i < sizeof(table_tests) / sizeof(struct table_test); i++) {
+        got = strqsep(&input, ",", "\"");
+        TEST_ASSERT_EQUAL_STRING(table_tests[i].expected, got);
+    }
+
+    free(original);
+}
+
+void
 test_strqsep_pipe_delim_single_quote_qual(void)
 {
     static struct table_test table_tests[] = {
@@ -106,6 +127,7 @@ int main(void) {
   RUN_TEST(test_strqsep_pipe_delim_single_quote_qual);
   RUN_TEST(test_strqsep_null_input);
   RUN_TEST(test_strqsep_empty_input);
+  RUN_TEST(test_strqsep_comma_at_beginning_with_qual);
 
   return UNITY_END();
 }
